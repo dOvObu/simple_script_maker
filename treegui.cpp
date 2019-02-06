@@ -3,6 +3,9 @@
 #include "besiercurve.h"
 #include <iostream>
 
+
+
+
 bool NodeGUI::someOneGrabed = false;
 std::vector< std::shared_ptr<NodeGUI> >* NodeGUI::allNodes = nullptr;
 sf::Font NodeGUI::font = sf::Font ();
@@ -21,7 +24,6 @@ void NodeGUI::update ()
 	name.setPosition (rectangle.getPosition ());
 	name.setCharacterSize (16);
 }
-
 
 void NodeGUI::drawSplineInBetweansOfEvents (sf::RenderWindow& window)
 {
@@ -44,7 +46,6 @@ void NodeGUI::drawSplineInBetweansOfEvents (sf::RenderWindow& window)
 	}
 }
 
-
 void NodeGUI::draw (sf::RenderWindow& window)
 {
 	this->update ();//window);
@@ -52,7 +53,6 @@ void NodeGUI::draw (sf::RenderWindow& window)
 	window.draw (this->rectangle);
 	window.draw (this->name);
 }
-
 
 bool NodeGUI::addExitEvent (int x, int y)
 {
@@ -122,10 +122,7 @@ NodeGUI::NodeGUI (const std::wstring& name, int x, int y)
 
 NodeGUI::~NodeGUI () {}
 
-TreeGUI::TreeGUI ()
-{
-	NodeGUI::allNodes = &(this->nodes);
-}
+TreeGUI::TreeGUI () {NodeGUI::allNodes = &(this->nodes);}
 
 TreeGUI::~TreeGUI () {}
 
@@ -207,7 +204,7 @@ void TreeGUI::feedBackExitSelected (sf::RenderWindow& window)
 inline void createNewNode (std::string& nameOfTheWindow)
 {
 	system (("notepad " + nameOfTheWindow + "/____new_event_script____.txt").c_str ());
-	system (("python lexer.py " + nameOfTheWindow + "/____new_event_script____.txt ____tokens____.txt").c_str ());
+	system (("python " + lexerPath + nameOfTheWindow + "/____new_event_script____.txt ____tokens____.txt").c_str ());
 	// TODO: Parse tokens to lexical tree
 }
 
